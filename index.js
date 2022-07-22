@@ -1,22 +1,31 @@
 // Bài 5 
-function BT5() {
-    var txtNum = document.getElementById("txtNum").value * 1;
-    var contentHTML = " "
-
-    if (txtNum === 2) {
-        contentHTML = 2 + " ";
-    } else if (txtNum > 2) {
-        for (i = 3; i <= Math.sqrt(txtNum); i++) {
-            if (i % 2 !== 0) {
-                contentHTML += i + " "
-            } else {
-                return (console.log("false"));
-            }
-
-        }
+function checkIsPrime(n) {
+    var isCheck = true;
+    if (n < 2) {
+        isCheck = false;
+    } else if (n == 2) {
+        isCheck = true;
+    } else if (n % 2 == 0) {
+        isCheck = false;
     } else {
-        return 1;
+        for (var i = 3; i <= Math.sqrt(n); i += 2) {
+            if (n % i == 0) {
+                isCheck = false;
+                break;
+            }
+        }
     }
 
-    document.getElementById("resultBT5").innerHTML = contentHTML
+    return isCheck;
+}
+
+function BT5() {
+    var number = document.getElementById("number").value * 1;
+    var result = " ";
+    for (var i = 1; i <= number; i++) {
+        if (checkIsPrime(i)) {
+            result += i + " ";
+        }
+    }
+    document.getElementById("resultBT5").innerHTML = result;
 }
